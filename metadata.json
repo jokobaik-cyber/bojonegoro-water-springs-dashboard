@@ -1,0 +1,8 @@
+{
+  "name": "Bojonegoro Water Springs Dashboard",
+  "description": "A modern dashboard for monitoring and crowdsourcing information about water springs in Bojonegoro, featuring interactive maps and AI-powered analysis.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ]
+}
