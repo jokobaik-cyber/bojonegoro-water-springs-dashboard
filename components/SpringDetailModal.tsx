@@ -26,31 +26,28 @@ const SpringDetailModal: React.FC<SpringDetailModalProps> = ({ spring, onClose, 
   return (
     <div className="fixed inset-0 bg-slate-900/20 dark:bg-black/30 z-[3000] flex items-center justify-center p-4 sm:p-6 animate-fade-in">
       <div className="bg-white dark:bg-slate-900 rounded-2xl w-full max-w-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] border border-white/20 dark:border-slate-800 transition-colors duration-500">
-        {/* Immersive Header */}
-        <div className="relative h-48 sm:h-56 w-full flex-shrink-0">
-          <img src={spring.imageUrl} alt={spring.name} className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-          
+        {/* Header */}
+        <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-800 dark:to-blue-900 p-6 sm:p-8">
           <button 
             onClick={onClose}
-            className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/30 backdrop-blur-xl text-white rounded-full transition-all border border-white/20 shadow-lg"
+            className="absolute top-4 right-4 p-3 bg-white/20 hover:bg-white/30 backdrop-blur-xl text-white rounded-full transition-all border border-white/20 shadow-lg"
           >
             <X size={24} />
           </button>
           
-          <div className="absolute bottom-10 left-10 right-10 text-white animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <div className="text-white">
             <div className="flex items-center gap-3 mb-4">
               <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] ${styles.bg} ${styles.color} shadow-sm border ${styles.border}`}>
                 Kondisi: {spring.status}
               </span>
-              <span className="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-white/10 backdrop-blur-md text-white border border-white/20">
+              <span className="px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-white/20 backdrop-blur-md text-white border border-white/20">
                 <Droplet size={10} className="inline mr-1" /> {spring.flowRate || '8.5 L/s'}
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-black mb-3 tracking-tighter leading-tight">{spring.name}</h2>
-            <div className="flex flex-wrap items-center gap-6 text-xs font-bold text-white/70 uppercase tracking-widest">
-              <span className="flex items-center gap-2"><MapPin size={16} className="text-blue-400" /> {spring.desa ? `${spring.desa}, ` : ''}{spring.kecamatan || 'Bojonegoro'}</span>
-              <span className="flex items-center gap-2"><Calendar size={16} className="text-blue-400" /> Terdata {spring.createdAt}</span>
+            <div className="flex flex-wrap items-center gap-6 text-xs font-bold text-white/80 uppercase tracking-widest">
+              <span className="flex items-center gap-2"><MapPin size={16} /> {spring.desa ? `${spring.desa}, ` : ''}{spring.kecamatan || 'Bojonegoro'}</span>
+              <span className="flex items-center gap-2"><Calendar size={16} /> Terdata {spring.createdAt}</span>
             </div>
           </div>
         </div>
@@ -62,14 +59,27 @@ const SpringDetailModal: React.FC<SpringDetailModalProps> = ({ spring, onClose, 
               <section>
                 <div className="flex items-center gap-2 mb-4">
                   <div className={`w-1.5 h-6 rounded-full ${styles.accent}`}></div>
-                  <h4 className="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em]">Informasi Situs</h4>
+                  <h4 className="text-xs font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em]">Lokasi Sumber</h4>
                 </div>
-                <p className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg font-medium italic">"{spring.description}"</p>
-                <div className="mt-6 flex items-center gap-4 p-4 bg-white dark:bg-slate-800/40 rounded-3xl border border-slate-100 dark:border-slate-800 shadow-sm">
-                   <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 flex items-center justify-center">
-                     <Info size={20} />
-                   </div>
-                   <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">Status situs diverifikasi oleh otoritas lingkungan daerah berdasarkan laporan lapangan.</p>
+                <div className="space-y-3">
+                  <div className="p-4 bg-white dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">Desa</p>
+                    <p className="text-sm font-black text-slate-800 dark:text-white">{spring.desa}</p>
+                  </div>
+                  <div className="p-4 bg-white dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                    <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">Kecamatan</p>
+                    <p className="text-sm font-black text-slate-800 dark:text-white">{spring.kecamatan}</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div className="p-4 bg-white dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                      <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">Latitude</p>
+                      <p className="text-sm font-black text-slate-800 dark:text-white">{spring.location.lat.toFixed(4)}</p>
+                    </div>
+                    <div className="p-4 bg-white dark:bg-slate-800/40 rounded-2xl border border-slate-100 dark:border-slate-800">
+                      <p className="text-xs font-bold text-slate-500 dark:text-slate-400 mb-1">Longitude</p>
+                      <p className="text-sm font-black text-slate-800 dark:text-white">{spring.location.lng.toFixed(4)}</p>
+                    </div>
+                  </div>
                 </div>
               </section>
 

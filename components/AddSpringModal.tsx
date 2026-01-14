@@ -49,7 +49,6 @@ const AddSpringModal: React.FC<AddSpringModalProps> = ({ onClose, onAdd, selecte
       description,
       location: { lat: selectedCoords[0], lng: selectedCoords[1] },
       status: (aiAnalysis?.suggestedStatus as SpringStatus) || SpringStatus.GOOD,
-      imageUrl: image || 'https://picsum.photos/seed/' + Math.random() + '/800/600',
       contributor: 'Warga Publik',
       createdAt: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
       flowRate: 'Dalam Analisis',

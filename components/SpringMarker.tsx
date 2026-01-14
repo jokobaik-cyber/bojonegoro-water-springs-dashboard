@@ -40,10 +40,7 @@ const SpringMarker: React.FC<SpringMarkerProps> = ({ spring, onOpenDetail }) => 
     <MarkerAny position={[spring.location.lat, spring.location.lng]} icon={icon}>
       <PopupAny className="spring-popup">
         <div className="w-56 p-0 overflow-hidden bg-white dark:bg-slate-900 transition-colors">
-          {spring.imageUrl && (
-            <img src={spring.imageUrl} alt={spring.name} className="w-full h-24 object-cover mb-3" />
-          )}
-          <div className="px-3 pb-3 space-y-2">
+          <div className="px-3 py-3 space-y-2">
             <div>
               <h3 className="font-black text-slate-800 dark:text-slate-100 text-sm leading-tight">{spring.name}</h3>
               <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-0.5">{spring.contributor} • {spring.createdAt}</p>

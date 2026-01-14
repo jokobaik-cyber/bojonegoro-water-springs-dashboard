@@ -276,21 +276,20 @@ const App: React.FC = () => {
                         <div
                           key={spring.id}
                           onClick={() => setDetailSpring(spring)}
-                          className="glass-card flex gap-4 p-4 rounded-2xl cursor-pointer group"
+                          className="glass-card flex flex-col gap-3 p-4 rounded-2xl cursor-pointer group"
                         >
-                          <div className="relative w-20 h-20 flex-shrink-0">
-                            <img src={spring.imageUrl} alt={spring.name} className="w-full h-full rounded-xl object-cover" />
-                            <div className={`absolute -top-1 -right-1 w-4 h-4 rounded-full border-2 border-white dark:border-slate-900 ${spring.status === 'Excellent' ? 'bg-sky-400' : 'bg-slate-800'}`}></div>
-                          </div>
-                          <div className="flex-1 min-w-0 flex flex-col justify-center">
-                            <h4 className="font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition-colors truncate text-sm">{spring.name}</h4>
-                            <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest mt-1">{spring.kecamatan}</p>
-                            <div className="mt-2 flex items-center gap-2">
-                              <div className="flex -space-x-1.5">
-                                {[1, 2].map(i => <div key={i} className="w-5 h-5 rounded-full border border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-700"></div>)}
-                              </div>
-                              <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500">+{spring.comments?.length || 0} Tanggapan</span>
+                          <div className="flex items-start justify-between">
+                            <div className="flex-1 min-w-0">
+                              <h4 className="font-bold text-slate-800 dark:text-slate-100 group-hover:text-blue-600 transition-colors truncate text-sm">{spring.name}</h4>
+                              <p className="text-[10px] text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest mt-1">{spring.kecamatan}</p>
                             </div>
+                            <div className={`flex-shrink-0 w-6 h-6 rounded-full border-2 border-white dark:border-slate-800 ml-2 ${spring.status === 'Excellent' ? 'bg-sky-400' : spring.status === 'Good' ? 'bg-green-400' : spring.status === 'Fair' ? 'bg-yellow-400' : 'bg-red-400'}`}></div>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="flex -space-x-1.5">
+                              {[1, 2].map(i => <div key={i} className="w-4 h-4 rounded-full border border-white dark:border-slate-800 bg-slate-100 dark:bg-slate-700"></div>)}
+                            </div>
+                            <span className="text-[10px] font-bold text-slate-400 dark:text-slate-500">+{spring.comments?.length || 0} Tanggapan</span>
                           </div>
                         </div>
                       ))}
