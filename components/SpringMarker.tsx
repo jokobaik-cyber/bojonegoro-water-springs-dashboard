@@ -4,6 +4,7 @@ import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import { ExternalLink } from 'lucide-react';
 import { Spring, SpringStatus } from '../types';
+import './SpringMarker.css';
 
 interface SpringMarkerProps {
   spring: Spring;
@@ -24,12 +25,18 @@ const getStatusColor = (status: SpringStatus) => {
 const SpringMarker: React.FC<SpringMarkerProps> = ({ spring, onOpenDetail }) => {
   const markerColor = getStatusColor(spring.status);
   
-  // Custom icon that adapts to theme could be done via CSS, but simpler to use a fixed look
+  // Custom icon with pulsing animation
   const icon = L.divIcon({
-    className: 'custom-div-icon',
-    html: `<div style="background-color: ${markerColor}; width: 22px; height: 22px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'"></div>`,
-    iconSize: [22, 22],
-    iconAnchor: [11, 11],
+    className: 'spring-marker-wrapper',
+    html: `
+      <div class="spring-marker-pulse" style="--marker-color: ${markerColor};">
+        <div class="spring-marker-ripple"></div>
+        <div class="spring-marker-ripple" style="animation-delay: 0.4s;"></div>
+        <div class="spring-marker-core" style="background-color: ${markerColor};"></div>
+      </div>
+    `,
+    iconSize: [50, 50],
+    iconAnchor: [25, 25],
   });
 
   // Casting components to any to resolve IntrinsicAttributes errors where standard Leaflet props are missing in the type definitions
