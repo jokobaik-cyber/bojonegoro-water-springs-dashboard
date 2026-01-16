@@ -18,6 +18,16 @@ export default defineConfig(({ mode }) => {
         alias: {
           '@': path.resolve(__dirname, '.'),
         }
-      }
+      },
+      build: {
+        minify: 'terser',
+        terserOptions: {
+          compress: {
+            drop_console: false,
+            drop_debugger: true,
+          },
+        },
+        chunkSizeWarningLimit: 1000,
+      },
     };
 });

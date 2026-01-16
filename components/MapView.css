@@ -1,0 +1,93 @@
+/* MapView.css - Optimized for mobile and performance */
+
+.map-container {
+  contain: layout style paint;
+  will-change: transform;
+  position: relative;
+}
+
+.leaflet-container {
+  font-family: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+/* Mobile-first animations */
+@media (max-width: 768px) {
+  * {
+    animation-duration: 0.3s !important;
+  }
+
+  .spring-marker-pulse {
+    --size: 18px;
+  }
+
+  .shadow-lg {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+/* Desktop animations */
+@media (min-width: 769px) {
+  .spring-marker-pulse {
+    --size: 22px;
+  }
+}
+
+/* Optimize scrolling performance */
+.scrollable {
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Reduce paint operations */
+.leaflet-pane {
+  contain: paint;
+}
+
+/* Optimize map tiles */
+.leaflet-tile {
+  contain: layout style paint;
+}
+
+/* Marker optimization */
+.leaflet-marker-icon {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Popup styling */
+.spring-popup {
+  font-family: inherit;
+}
+
+.spring-popup .leaflet-popup-content-wrapper {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+}
+
+.dark .spring-popup .leaflet-popup-content-wrapper {
+  background: #1e293b;
+}
+
+.spring-popup .leaflet-popup-tip {
+  background: white;
+}
+
+.dark .spring-popup .leaflet-popup-tip {
+  background: #1e293b;
+}
+
+/* Disable animations on reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
